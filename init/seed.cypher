@@ -57,3 +57,13 @@ MATCH (lilly:Person {name: "Lilly Wachowski"}), (matrix:Movie {title: "The Matri
 MERGE (lilly)-[:DIRECTED]->(matrix);
 MATCH (joel:Person {name: "Joel Silver"}), (matrix:Movie {title: "The Matrix"})
 MERGE (joel)-[:PRODUCED]->(matrix);
+
+
+// 4. John Wick (2014) 
+MERGE (wick:Movie {title: "John Wick"})
+  ON CREATE SET wick.released = 2014,
+                wick.tagline  = "Don't set him off.";
+MATCH (wick:Movie {title: "John Wick"}), (g:Genre {name: "Action"})
+MERGE (wick)-[:HAS_GENRE]->(g);
+MATCH (keanu:Person {name: "Keanu Reeves"}), (wick:Movie {title: "John Wick"})
+MERGE (keanu)-[:ACTED_IN {roles: ["John Wick"]}]->(wick);
