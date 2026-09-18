@@ -36,3 +36,24 @@ MERGE (lilly:Person {name: "Lilly Wachowski"})
   ON CREATE SET lilly.born = 1967;
 MERGE (joel:Person {name: "Joel Silver"})
   ON CREATE SET joel.born = 1952;
+
+
+// Relationships for The Matrix
+MATCH (matrix:Movie {title: "The Matrix"}), (g:Genre {name: "Sci-Fi"})
+MERGE (matrix)-[:HAS_GENRE]->(g);
+MATCH (matrix:Movie {title: "The Matrix"}), (g:Genre {name: "Action"})
+MERGE (matrix)-[:HAS_GENRE]->(g);
+MATCH (keanu:Person {name: "Keanu Reeves"}), (matrix:Movie {title: "The Matrix"})
+MERGE (keanu)-[:ACTED_IN {roles: ["Neo"]}]->(matrix);
+MATCH (carrie:Person {name: "Carrie-Anne Moss"}), (matrix:Movie {title: "The Matrix"})
+MERGE (carrie)-[:ACTED_IN {roles: ["Trinity"]}]->(matrix);
+MATCH (laurence:Person {name: "Laurence Fishburne"}), (matrix:Movie {title: "The Matrix"})
+MERGE (laurence)-[:ACTED_IN {roles: ["Morpheus"]}]->(matrix);
+MATCH (hugo:Person {name: "Hugo Weaving"}), (matrix:Movie {title: "The Matrix"})
+MERGE (hugo)-[:ACTED_IN {roles: ["Agent Smith"]}]->(matrix);
+MATCH (lana:Person {name: "Lana Wachowski"}), (matrix:Movie {title: "The Matrix"})
+MERGE (lana)-[:DIRECTED]->(matrix);
+MATCH (lilly:Person {name: "Lilly Wachowski"}), (matrix:Movie {title: "The Matrix"})
+MERGE (lilly)-[:DIRECTED]->(matrix);
+MATCH (joel:Person {name: "Joel Silver"}), (matrix:Movie {title: "The Matrix"})
+MERGE (joel)-[:PRODUCED]->(matrix);
