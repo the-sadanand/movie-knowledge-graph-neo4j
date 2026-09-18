@@ -1,0 +1,4 @@
+// Add or update the rating property on The Matrix
+MATCH (m:Movie {title: "The Matrix"})
+SET m.rating = 8.7
+RETURN m.title AS title, m.rating AS rating;
