@@ -67,3 +67,7 @@ MATCH (wick:Movie {title: "John Wick"}), (g:Genre {name: "Action"})
 MERGE (wick)-[:HAS_GENRE]->(g);
 MATCH (keanu:Person {name: "Keanu Reeves"}), (wick:Movie {title: "John Wick"})
 MERGE (keanu)-[:ACTED_IN {roles: ["John Wick"]}]->(wick);
+
+
+// ---------- 5. "To Be Deleted" (test movie) ----------
+MERGE (:Movie {title: "To Be Deleted", released: 2024});
