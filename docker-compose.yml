@@ -1,7 +1,7 @@
 
 services:
   neo4j:
-    image: neo4j:5.18.8
+    image: neo4j:5.18
     container_name: movie_knowledge_graph_db
     ports:
       - "7474:7474"   # HTTP (Neo4j Browser)
